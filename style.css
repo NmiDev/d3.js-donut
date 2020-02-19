@@ -5,3 +5,7 @@
 .parag {
     margin: 1.5rem 0 !important;
 }
+
+#monitor {
+    display: none;
+}

@@ -19,31 +19,53 @@
     <div class="container section">
         <div class="row">
             <div class="col s12 m6">
-                <from class="card z-depth-0">
+                <form id="form" class="card">
                     <div class="card-content">
-                        <span class="card-title blue-grey-darken-text">Add item :</span>
+                        <span class="card-title blue-grey-text">Add item</span>
                         <div class="input-field">
                             <label for="name">Name</label>
-                            <input type="text" id="name">
+                            <input type="text" id="name" required>
                         </div>
                         <div class="input-field">
                             <label for="name">Cost</label>
-                            <input type="text" id="cost">
+                            <input type="number" id="cost" required>
                         </div>
                         <div class="input-field center">
-                            <button class="btn-large pink white-text">Add item</button>
+                            <button type="submit" class="btn-large pink white-text">Add</button>
+                            <button type="button" class="btn-large pink white-text" id="clear">Clear</button>
                         </div>
                         <div class="input-field center">
-                            <p class="red-text parag" id="error">Error</p>
+                            <p class="parag" id="monitor"></p>
                         </div>
                     </div>
-                </from>
+                </form>
             </div>
             <div class="col s12 m6 push-m1">
                 <div class="canvas"></div>
             </div>
         </div>
     </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBBMeA9zEFk_SnT9Na3WckLxddoO6qLzdU",
+            authDomain: "dataviz-d3js-d251c.firebaseapp.com",
+            databaseURL: "https://dataviz-d3js-d251c.firebaseio.com",
+            projectId: "dataviz-d3js-d251c",
+            storageBucket: "dataviz-d3js-d251c.appspot.com",
+            messagingSenderId: "839999682297",
+            appId: "1:839999682297:web:a1de7dbfc83a30ab90d428",
+            measurementId: "G-JE17D197VY"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // Database
+        const db = firebase.firestore();
+    </script>
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
