@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3.js Donut Chart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body class="blue-grey lighten-4">
+
+    <header class="blue-grey darken-2 section">
+        <h2 class="center white-text title">Donut Chart</h2>
+        <p class="flow-text grey-text center text-lighten-2 parag">Monthly budget tracker</p>
+    </header>
+
+    <div class="container section">
+        <div class="row">
+            <div class="col s12 m6">
+                <from class="card z-depth-0">
+                    <div class="card-content">
+                        <span class="card-title blue-grey-darken-text">Add item :</span>
+                        <div class="input-field">
+                            <label for="name">Name</label>
+                            <input type="text" id="name">
+                        </div>
+                        <div class="input-field">
+                            <label for="name">Cost</label>
+                            <input type="text" id="cost">
+                        </div>
+                        <div class="input-field center">
+                            <button class="btn-large pink white-text">Add item</button>
+                        </div>
+                        <div class="input-field center">
+                            <p class="red-text parag" id="error">Error</p>
+                        </div>
+                    </div>
+                </from>
+            </div>
+            <div class="col s12 m6 push-m1">
+                <div class="canvas"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="graph.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
