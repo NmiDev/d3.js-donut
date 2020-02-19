@@ -17,8 +17,8 @@ const app = {
     submitForm: function(evt) {
         evt.preventDefault();
 
-        const name = app.nameInput.value;
-        const cost = app.costInput.value;
+        const name = app.nameInput.value.trim();
+        const cost = app.costInput.value.trim();
 
         if (app.isCostValid(cost) && app.isNameValid(name)) {
             // Clean the monitor
@@ -31,6 +31,8 @@ const app = {
                 .catch(function(error) {
                     app.displayMessage(`Error adding document: ${error}`, false);
                 });
+            // Clear the form
+            setTimeout(app.clearForm, 2000);
         } else {
             app.displayMessage('Invalid inputs', false);  
         }
