@@ -9,3 +9,7 @@
 #monitor {
     display: none;
 }
+
+div.container.section {
+    margin: 3rem auto;
+}

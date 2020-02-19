@@ -24,12 +24,34 @@ const graph = svg
 
 // Angle generator
 const pie = d3.pie()
-    .sort(null) // Disable auto-sort refresh
-    .value(d => d.cost); // Evaluate item
+    .sort(null)
+    .value(d => d.cost);
 
 // Update function
 const update = (data) => {
-    console.log(pie(data))
+    // Angles data
+    const angles = pie(data);
+    // Join data to path element
+    const paths = graph.selectAll('path').data(angles);
+
+    // Remove unnecessary shapes using the exit selection
+    paths
+        .exit()
+        .remove();
+
+    // Update current shapes in the DOM
+    paths
+        .attr('d', arcPath);
+
+    // Append the enter selection ti the DOM
+    paths
+        .enter()
+        .append('path')
+            .attr('class', 'arc')
+            .attr('d', arcPath)
+            .attr('stroke', 'white')
+            .attr('stroke-width', 3);
+
 }
 
 // Fetch and listening DB changes
