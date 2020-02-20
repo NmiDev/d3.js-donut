@@ -141,7 +141,7 @@ const update = (data) => {
         .append('path')
             .attr('class', 'arc')
             .attr('stroke', 'white')
-            .attr('stroke-width', 3)
+            .attr('stroke-width', 1)
             .attr('fill', d => colour(d.data.name))
             .each(function(d) {
                 this._current = d;

@@ -9,6 +9,7 @@ const app = {
     // Init
     init: function() {
         console.log("app loaded");
+        // Form event handler
         app.form.addEventListener('submit', app.submitForm);
         app.clearInput.addEventListener('click', app.clearForm);
     },
