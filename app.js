@@ -60,7 +60,7 @@ const app = {
 
     },
 
-    // Methods form
+    // Methods form and monitor
     submitForm: function(evt) {
         evt.preventDefault();
 
@@ -72,16 +72,16 @@ const app = {
             app.monitor.style.display = 'none';
             // Add the item to db
             app.addExpense(name, cost)
-                .then(function(docRef) {
-                    app.displayMessage(`Document written with ID: ${docRef.id}`, true);
+                .then(docRef => {
+                    app.displayMessage(`Document written with ID: ${docRef.id}`, 'success');
                 })
-                .catch(function(error) {
-                    app.displayMessage(`Error adding document: ${error}`, false);
+                .catch(error => {
+                    app.displayMessage(`Error adding document: ${error}`, 'error');
                 });
             // Clear the form
             setTimeout(app.clearForm, 2000);
         } else {
-            app.displayMessage('Invalid inputs', false);  
+            app.displayMessage('Invalid inputs', 'error');  
         }
         
         
@@ -93,8 +93,8 @@ const app = {
         app.form.reset();
     },
 
-    displayMessage: function(message, isInfo) {
-        app.monitor.style.color = isInfo ? 'green' : 'red';
+    displayMessage: function(message, type) {
+        app.monitor.style.color = (type === 'success') ? 'green' : 'red';
         app.monitor.textContent = message;
         app.monitor.style.display = "block";
     },
@@ -221,11 +221,11 @@ const app = {
         const docId = d.data.id;
 
         app.deleteExpense(docId)
-            .then(function() {
-                console.log("Document successfully deleted!");
+            .then(() => {
+                app.displayMessage('Document successfully deleted!', 'success');
             })
-            .catch(function(error) {
-                console.error("Error removing document: ", error);
+            .catch(error => {
+                app.displayMessage(`Error removing document: ${error}`, 'error');
         });
     },
 
