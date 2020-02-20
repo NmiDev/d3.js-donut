@@ -13,3 +13,14 @@
 div.container.section {
     margin: 3rem auto;
 }
+
+.tip {
+    background-color: black;
+    color: white ;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+}
+
+.tip-name {
+    font-weight: bold;
+}

@@ -65,10 +65,56 @@ function arcTweenUpdate(d) {
     }
 }
 
+// Legend setup
+const legendGroup = svg.append('g')
+    .attr('transform', `translate(${dims.chartWidth + 40}, 20)`);
+
+const legend = d3.legendColor()
+    .shape('circle')
+    .shapePadding('10')
+    .scale(colour)
+
+// Event listener
+function handleMouseOver(d, i, n) {
+    d3.select(n[i])
+        .transition('changeSliceFill')
+        .duration(300)
+        .attr('fill', 'white');
+}
+
+function handleMouseOut(d, i, n) {
+    d3.select(n[i])
+        .transition('changeSliceFill')
+        .duration(300)
+        .attr('fill', colour([d.data.name]) )
+}
+
+function handleMouseClick(d, i, n) {
+    db.collection('expenses').doc(d.data.id).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+}
+
+// Tooltip setup
+const tip = d3.tip()
+    .attr('class', 'tip')
+    .html(d => {
+        let html = ``;
+        html += `<div class="tip-name">${d.data.name}</div>`;
+        html += `<div class="tip-cost">${d.data.cost}</div>`;
+        return html;
+    })
+
+graph.call(tip);
+
 // Update function
 const update = (data) => {
     // Scale update with data
     colour.domain(data.map(item => item.name))
+    // Legend update
+    legendGroup.call(legend)
     // Angles data
     const angles = pie(data);
     // Join data to path element
@@ -103,7 +149,17 @@ const update = (data) => {
             .transition()
             .duration(750)
                 .attrTween('d', arcTweenEnter);
-
+    
+    // Event listener
+    graph.selectAll('.arc').on('mouseover', (d,i,n) => {
+        tip.show(d, n[i])
+        handleMouseOver(d,i,n);
+    });
+    graph.selectAll('.arc').on('mouseout', (d,i,n) => {
+        tip.hide();
+        handleMouseOut(d,i,n);
+    });
+    graph.selectAll('.arc').on('click', handleMouseClick)
 }
 
 // Fetch and listening DB changes
