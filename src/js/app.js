@@ -28,39 +28,19 @@ const app = {
         // Init Firebase listener
         db.collection('expenses').onSnapshot((snapshot) => {
             snapshot.docChanges().forEach(change => {
+                // Catch the doc
                 const doc = {...change.doc.data(), id: change.doc.id};
-                
-                switch (change.type) {
-                    case 'added':
-                        app.data.push(doc);
-                        break;
-                    
-                    case 'modified':
-                        app.data.forEach((element, index) => {
-                            if (element.id === doc.id) {
-                                data[index] = doc;
-                            }
-                        })
-                        break;
-        
-                    case 'removed':
-                        app.data.forEach((element, index) => {
-                            if (element.id === doc.id) {
-                                app.data.splice(index, 1);
-                            }
-                        })
-                        break;
-        
-                    default:
-                        break;
-                }
+                // Catch the change type
+                const changeType = change.type;
+                // Refresh local data
+                app.refreshData(doc, changeType);
             });
             app.update(app.data);
         });
 
     },
 
-    // Methods form and monitor
+    // Methods: form and monitor
     submitForm: function(evt) {
         evt.preventDefault();
 
@@ -113,7 +93,7 @@ const app = {
         return true;
     },
 
-    // Methods graph
+    // Methods: graph
     initGraphConfig: function () {
         // Dimensions and center
         app.dims = {
@@ -282,6 +262,33 @@ const app = {
     },
 
     // CRUD operations
+    refreshData: function(doc, changeType) {
+        switch (changeType) {
+            case 'added':
+                app.data.push(doc);
+                break;
+            
+            case 'modified':
+                app.data.forEach((element, index) => {
+                    if (element.id === doc.id) {
+                        data[index] = doc;
+                    }
+                })
+                break;
+
+            case 'removed':
+                app.data.forEach((element, index) => {
+                    if (element.id === doc.id) {
+                        app.data.splice(index, 1);
+                    }
+                })
+                break;
+
+            default:
+                break;
+        }
+    },
+
     addExpense: function(name, cost) {
         return db.collection("expenses").add({
             name: name,
