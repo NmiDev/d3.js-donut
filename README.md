@@ -1,5 +1,7 @@
 # D3.js Donut chart
 
+![Donut chart]( https://i72.servimg.com/u/f72/19/44/56/72/datavi11.png)
+
 The purpose of this project is to show my capicties and skills. You can see what I learn for the pleasure or during my training and career path. (Inspiration from [Shaun Pelling](https://www.udemy.com/share/1020mmB0QSdV5URH8=/), D3 & Firebase !). Special thanks for Susie Lu (d3-legend) and Justin Palmer (d3-tip).
 
 ## More informations
