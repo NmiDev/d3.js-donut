@@ -17,6 +17,7 @@ The purpose of this project is to show my capicties and skills. You can see what
 - d3-tip
 - SVG
 - Firebase, cloud Firestore
+- Materialize
 
 *Softs and utilities :*
 - Visual Studio Code
