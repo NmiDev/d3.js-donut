@@ -4,6 +4,16 @@
 
 The purpose of this project is to show my capicties and skills. You can see what I learn for the pleasure or during my training and career path. (Inspiration from [Shaun Pelling](https://www.udemy.com/share/1020mmB0QSdV5URH8=/), D3 & Firebase !). Special thanks for Susie Lu (d3-legend) and Justin Palmer (d3-tip).
 
+Please note this project uses a Firebase backend and realtime database. You have to configure your own credential in the index.html file for those inputs : 
+- apiKey: "APIKEY",
+- authDomain: "AUTHDOMAIN",
+- databaseURL: "TESTURL",
+- projectId: "PROJECTID",
+- storageBucket: "PROJECTBUCKET",
+- messagingSenderId: "ID",
+- appId: "APPID",
+- measurementId: "MESUREID"
+
 ## More informations
 
 *Languages :*
